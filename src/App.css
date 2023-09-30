@@ -32,7 +32,7 @@
   background-color: transparent;
   padding: 0.7rem 0.5rem;
   border-radius: 6px;
-  border: 2px solid rgba(0,0,0,0.13);
+  border: 2px solid rgba(0, 0, 0, 0.13);
   outline: none;
 }
 input::-webkit-outer-spin-button,
@@ -40,22 +40,29 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.date_input input{
+.date_input input {
   width: 65px;
 }
-.date_input{
+.date_input {
   display: flex;
   gap: 0.7rem;
 }
-.cvc_wrapper input{
+.cvc_wrapper input {
   width: 173px;
 }
-input::placeholder{
-  color: #BBB9BC;
-  font-family: 'Inter', sans-serif;
+input::placeholder {
+  color: #bbb9bc;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
 }
-.formData button{
+input[type="text"],
+input[type="number"] {
+  color: #2f2e30;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+.formData button {
   width: 392px;
   padding: 0.85rem 0.5rem;
   background-color: #220930;
@@ -65,7 +72,72 @@ input::placeholder{
   border: none;
   outline: none;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   cursor: pointer;
   letter-spacing: 0.6px;
+}
+.card_fornt_wrapper {
+  width: 318px;
+  height: 152px;
+  padding: 2rem;
+  background-image: linear-gradient(
+    to right top,
+    #620594,
+    #6513a4,
+    #681eb5,
+    #6828c7,
+    #6732d9,
+    #6637e2,
+    #643beb,
+    #6240f4,
+    #6241f5,
+    #6242f7,
+    #6243f8,
+    #6244fa
+  );
+  position: absolute;
+  top: 5rem;
+  left: 9rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.filled_circle{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #feffff;
+}
+.ring_circle{
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1.3px solid #ffffff;
+  background-color: #623FF2;
+}
+.circle_wrapper{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nameCvc_wrapper{
+  display: flex;
+  gap: 8rem;
+  margin-top: 0.6rem;
+}
+.cardNumber{
+  font-size: 25px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400 !important;
+  letter-spacing: 2px;
+  margin-top: 3rem;
+}
+.nameCvc_wrapper p{
+  font-size: 14px;
+  color: #ffffff;
+  letter-spacing: 2px;
+  font-family: "Roboto", sans-serif;
 }
