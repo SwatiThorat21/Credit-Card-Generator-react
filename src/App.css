@@ -129,6 +129,7 @@ input[type="number"] {
   color: #ffffff;
   letter-spacing: 2px;
   font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
 }
 .card_back_wrapper {
   width: 368px;
@@ -255,4 +256,9 @@ input[type="number"] {
 .exp_wrapper{
   display: flex;
   align-items: center;
+}
+label{
+  margin-top: 0.3rem;
+  color: rgb(199, 15, 15);
+  font-size: 13px;
 }

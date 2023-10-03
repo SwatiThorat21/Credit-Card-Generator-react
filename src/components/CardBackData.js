@@ -1,11 +1,11 @@
 import "../App.css";
 
-export default function CardFrontData() {
+export default function CardFrontData({finalFormData}) {
   return (
     <>
       <div className="card_back_wrapper">
         <div className="black_scanner"></div>
-        <div className="cvc_input">000</div>
+        <div className="cvc_input">{finalFormData.cvc || "000"}</div>
         <div className="lines_wrapper">
           <div className="line_contain">
             <div className="line1-1"></div>

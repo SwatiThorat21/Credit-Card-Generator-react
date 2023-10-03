@@ -10,7 +10,7 @@ export default function CardFrontData({ finalFormData }) {
         </div>
         <div className="cardNumber">{finalFormData.cardNumber || "0000 0000 0000 0000"}</div>
         <div className="namedate_wrapper">
-          <p>{finalFormData.cardName || "Swati Thorat"}</p>
+          <p>{finalFormData.cardName || "Jane Appleseed"}</p>
           <div className="exp_wrapper">
             <p>{finalFormData.expMonth || "00/"}</p>
             <p>{finalFormData.expYear || "00"}</p>
