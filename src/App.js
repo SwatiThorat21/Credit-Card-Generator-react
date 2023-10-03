@@ -1,11 +1,11 @@
 import './App.css';
-import CardContainer from './components/CardContainer';
+import CreditCardContainer from './components/CreditCardContainer';
 
 function App() {
   return (
     <>
     <div className="container">
-      <CardContainer />
+      <CreditCardContainer />
     </div>
     </>
   );

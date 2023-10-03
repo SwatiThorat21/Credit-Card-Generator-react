@@ -80,21 +80,9 @@ input[type="number"] {
   width: 315px;
   height: 145px;
   padding: 2rem;
-  background-image: linear-gradient(
-    to right top,
-    #620594,
-    #6513a4,
-    #681eb5,
-    #6828c7,
-    #6732d9,
-    #6637e2,
-    #643beb,
-    #6240f4,
-    #6241f5,
-    #6242f7,
-    #6243f8,
-    #6244fa
-  );
+  background: url('images/card-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   top: 3rem;
   left: 9rem;
@@ -123,7 +111,7 @@ input[type="number"] {
   align-items: center;
   gap: 1rem;
 }
-.nameCvc_wrapper {
+.namedate_wrapper {
   display: flex;
   gap: 8rem;
   margin-top: 0.6rem;
@@ -136,7 +124,7 @@ input[type="number"] {
   letter-spacing: 2px;
   margin-top: 3rem;
 }
-.nameCvc_wrapper p {
+.namedate_wrapper p {
   font-size: 13px;
   color: #ffffff;
   letter-spacing: 2px;
@@ -263,4 +251,8 @@ input[type="number"] {
   height: 4px;
   border-radius: 4px;
   background-color: #aeb5bd;
+}
+.exp_wrapper{
+  display: flex;
+  align-items: center;
 }

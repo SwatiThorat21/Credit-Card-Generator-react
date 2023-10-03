@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 
-export default function FormData() {
+export default function FormData({setFinalFormData}) {
   const [formData, setFormData] = useState({
     cardName: "",
     cardNumber: "",
@@ -9,18 +9,18 @@ export default function FormData() {
     expYear: "",
     cvc: "",
   });
-
+  
   function handleChange(e) {
     setFormData((prevData) => {
       return { ...prevData, [e.target.name]: e.target.value };
     });
-    console.log(formData);
-  }
-
-  function handleSubmit(e) {
+   }
+   
+   function handleSubmit(e) {
     e.preventDefault();
+    setFinalFormData(formData);
   }
-
+  
   return (
     <>
       <form className="formData" onSubmit={handleSubmit}>
