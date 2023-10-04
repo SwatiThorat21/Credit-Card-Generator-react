@@ -9,7 +9,13 @@ export default function FormData({ setFinalFormData }) {
     expYear: "",
     cvc: "",
   });
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState({
+    cardName: false,
+    cardNumber: false,
+    expMonth: false,
+    expYear: false,
+    cvc: false,
+  });
 
   function handleChange(e) {
     setFormData((prevData) => {
@@ -19,16 +25,44 @@ export default function FormData({ setFinalFormData }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setFinalFormData(formData);
-    if (
-      formData.cardName.length === 0 ||
-      formData.cardNumber.length === 0 ||
-      formData.expMonth.length === 0 ||
-      formData.expYear.length === 0 ||
-      formData.cvc.length === 0
-    ) {
-      setError(true);
+
+    let newErrors = {};
+    // Validate card name
+    if (formData.cardName.length === 0) {
+      newErrors.cardName = true;
+    } else {
+      newErrors.cardName = false;
     }
+
+    // Validate card number
+    if (formData.cardNumber.replace(/\s/g, "").length !== 16) {
+      newErrors.cardNumber = true;
+    } else {
+      newErrors.cardNumber = false;
+    }
+
+    // Validate expiration month (1-12)
+    if (formData.expMonth < 1 || formData.expMonth > 12) {
+      newErrors.expMonth = true;
+    } else {
+      newErrors.expMonth = false;
+    }
+
+    // Validate expiration year (<2023)
+    if (formData.expYear < 22) {
+      newErrors.expMonth = true;
+    } else {
+      newErrors.expMonth = false;
+    }
+
+    // Validate CVC
+    if (formData.cvc.length === 0) {
+      newErrors.cvc = true;
+    } else {
+      newErrors.cvc = false;
+    }
+    setErrors(newErrors);
+    setFinalFormData(formData);
   }
 
   return (
@@ -44,20 +78,21 @@ export default function FormData({ setFinalFormData }) {
             value={formData.cardName}
           />
         </div>
-        { error ? <label>Name can not be empty !</label> : ""}
+        {errors.cardName && formData.cardName.length <= 0 && (
+          <label>Name can not be empty !</label>
+        )}
+
         <div>
           <p>CARD NUMBER</p>
           <input
             type="tel"
             placeholder="e.g. 1234 5678 9123 0000"
             name="cardNumber"
-            maxLength="16"
-            pattern="[0-9\s]{13,19}"
             onChange={handleChange}
             value={formData.cardNumber}
           />
         </div>
-        {error ? <label>Card number can not be empty !</label> : ""}
+        {errors.cardNumber && <label>Card number should be 16 digits !</label>}
         <div className="info_wrapper">
           <div className="date_wrapper">
             <p>EXP. DATE (MM/YY) </p>
@@ -66,6 +101,7 @@ export default function FormData({ setFinalFormData }) {
                 type="tel"
                 placeholder="MM"
                 name="expMonth"
+                maxLength="2"
                 onChange={handleChange}
                 value={formData.expMonth}
               />
@@ -73,11 +109,14 @@ export default function FormData({ setFinalFormData }) {
                 type="number"
                 placeholder="YY"
                 name="expYear"
+                maxLength="2"
                 onChange={handleChange}
                 value={formData.expYear}
               />
             </div>
-            {error ? <label>Exp. date can not be empty !</label> : ""}
+            {(errors.expMonth || errors.expYear) && (
+              <label>Invalid expiration date !</label>
+            )}
           </div>
           <div className="cvc_wrapper">
             <div>
@@ -86,12 +125,15 @@ export default function FormData({ setFinalFormData }) {
                 type="tel"
                 placeholder="e.g.123"
                 name="cvc"
+                maxLength="4"
                 pattern="\d{3,4}"
                 onChange={handleChange}
                 value={formData.cvc}
               />
             </div>
-            {error ? <label>CVC can not be empty !</label>:""}
+            {errors.cvc && formData.cvc.length <= 0 && (
+              <label>CVC can not be empty !</label>
+            )}
           </div>
         </div>
         <button>Confirm</button>
