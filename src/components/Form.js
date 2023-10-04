@@ -61,8 +61,11 @@ export default function FormData({ setFinalFormData }) {
     } else {
       newErrors.cvc = false;
     }
+    const hasError = Object.values(newErrors).some((err) => err);
+    if (!hasError) {
+      setFinalFormData(formData);
+    }
     setErrors(newErrors);
-    setFinalFormData(formData);
   }
 
   return (
@@ -85,9 +88,11 @@ export default function FormData({ setFinalFormData }) {
         <div>
           <p>CARD NUMBER</p>
           <input
-            type="tel"
+            type="number"
+            maxLength="16"
+            pattern="[0-9\s]{13,16}"
             placeholder="e.g. 1234 5678 9123 0000"
-            name="cardNumber"
+            name="cardNumber"          
             onChange={handleChange}
             value={formData.cardNumber}
           />
@@ -98,7 +103,7 @@ export default function FormData({ setFinalFormData }) {
             <p>EXP. DATE (MM/YY) </p>
             <div className="date_input">
               <input
-                type="tel"
+                type="number"
                 placeholder="MM"
                 name="expMonth"
                 maxLength="2"
