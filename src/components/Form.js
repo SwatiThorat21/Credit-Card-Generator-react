@@ -18,8 +18,19 @@ export default function FormData({ setFinalFormData }) {
   });
 
   function handleChange(e) {
+    const { name, value } = e.target;
+    if (name === "cardNumber" && /[^0-9]/.test(value)) {
+      return;
+    } else if (name === "expMonth" && /[^0-9]/.test(value)) {
+      return;
+    } else if (name === "expYear" && /[^0-9]/.test(value)) {
+      return;
+    } else if (name === "cvc" && /[^0-9]/.test(value)) {
+      return;
+    }
+
     setFormData((prevData) => {
-      return { ...prevData, [e.target.name]: e.target.value };
+      return { ...prevData, [name]: value };
     });
   }
 
@@ -50,9 +61,9 @@ export default function FormData({ setFinalFormData }) {
 
     // Validate expiration year (<2023)
     if (formData.expYear < 22) {
-      newErrors.expMonth = true;
+      newErrors.expYear = true;
     } else {
-      newErrors.expMonth = false;
+      newErrors.expYear = false;
     }
 
     // Validate CVC
@@ -88,11 +99,10 @@ export default function FormData({ setFinalFormData }) {
         <div>
           <p>CARD NUMBER</p>
           <input
-            type="number"
+            type="tel"
             maxLength="16"
-            pattern="[0-9\s]{13,16}"
             placeholder="e.g. 1234 5678 9123 0000"
-            name="cardNumber"          
+            name="cardNumber"
             onChange={handleChange}
             value={formData.cardNumber}
           />
@@ -103,7 +113,7 @@ export default function FormData({ setFinalFormData }) {
             <p>EXP. DATE (MM/YY) </p>
             <div className="date_input">
               <input
-                type="number"
+                type="tel"
                 placeholder="MM"
                 name="expMonth"
                 maxLength="2"
@@ -111,7 +121,7 @@ export default function FormData({ setFinalFormData }) {
                 value={formData.expMonth}
               />
               <input
-                type="number"
+                type="tel"
                 placeholder="YY"
                 name="expYear"
                 maxLength="2"
