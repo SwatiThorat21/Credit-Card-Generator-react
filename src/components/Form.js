@@ -53,21 +53,21 @@ export default function FormData({ setFinalFormData }) {
     }
 
     // Validate expiration month (1-12)
-    if (formData.expMonth < 1 || formData.expMonth > 12) {
+    if (formData.expMonth < 1 || formData.expMonth > 12 || formData.expMonth.length <2) {
       newErrors.expMonth = true;
     } else {
       newErrors.expMonth = false;
     }
 
     // Validate expiration year (<2023)
-    if (formData.expYear < 22) {
+    if (formData.expYear < 22 || formData.expYear.length <2) {
       newErrors.expYear = true;
     } else {
       newErrors.expYear = false;
     }
 
     // Validate CVC
-    if (formData.cvc.length === 0) {
+    if (formData.cvc.length === 0 || formData.cvc.length <3) {
       newErrors.cvc = true;
     } else {
       newErrors.cvc = false;
@@ -75,6 +75,7 @@ export default function FormData({ setFinalFormData }) {
     const hasError = Object.values(newErrors).some((err) => err);
     if (!hasError) {
       setFinalFormData(formData);
+
     }
     setErrors(newErrors);
   }
@@ -141,12 +142,11 @@ export default function FormData({ setFinalFormData }) {
                 placeholder="e.g.123"
                 name="cvc"
                 maxLength="4"
-                pattern="\d{3,4}"
                 onChange={handleChange}
                 value={formData.cvc}
               />
             </div>
-            {errors.cvc && formData.cvc.length <= 0 && (
+            {errors.cvc && (
               <label>CVC can not be empty !</label>
             )}
           </div>
