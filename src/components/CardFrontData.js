@@ -12,8 +12,7 @@ export default function CardFrontData({ finalFormData }) {
         <div className="namedate_wrapper">
           <p>{finalFormData.cardName || "Jane Appleseed"}</p>
           <div className="exp_wrapper">
-            <p>{finalFormData.expMonth || "00/"}</p>
-            <p>{finalFormData.expYear || "00"}</p>
+            <p>{finalFormData.expMonth || "00"}/{finalFormData.expYear || "00"}</p>
           </div>
         </div>
       </div>
