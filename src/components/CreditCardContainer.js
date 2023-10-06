@@ -13,16 +13,24 @@ export default function CreditCardContainer() {
     expYear: "",
     cvc: "",
   });
+  const[showModal, setShowModal] = useState(false);
 
+  function handleCloseModal(){
+    setShowModal(false)
+  }
+  function handleShowModal(){
+    setShowModal(true)
+  }
+  
   return (
     <>
       <div className="cardData_wrapper">
-        <Modal />
+        {showModal && <Modal onClose={handleCloseModal}/>}
         <CardFrontData finalFormData={finalFormData} />
         <CardBackdata finalFormData={finalFormData} />
       </div>
       <div className="formData_wrapper">
-        <FormData setFinalFormData={setFinalFormData} />
+        <FormData setFinalFormData={setFinalFormData} handleShowModal={handleShowModal} />
       </div>
     </>
   );

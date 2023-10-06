@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 
-export default function FormData({ setFinalFormData }) {
+export default function FormData({ setFinalFormData, handleShowModal }) {
   const [formData, setFormData] = useState({
     cardName: "",
     cardNumber: "",
@@ -75,7 +75,7 @@ export default function FormData({ setFinalFormData }) {
     const hasError = Object.values(newErrors).some((err) => err);
     if (!hasError) {
       setFinalFormData(formData);
-
+      handleShowModal()
     }
     setErrors(newErrors);
   }

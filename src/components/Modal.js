@@ -1,16 +1,16 @@
 import "./Modal.css";
 
-export default function Modal() {
+export default function Modal({onClose}) {
 
   return (
     <>
-      <div className="toastContain">
+      <div className="modalContain">
         {/* <!-- Modal --> */}
-        <div id="success_tic" className="modal fade" role="dialog">
+        <div id="success_tic" className="modal">
           <div className="modal-dialog">
             {/* <!-- Modal content--> */}
             <div className="modal-content">
-              <div className="close">&times;</div>
+              <div className="close" onClick={onClose}>&times;</div>
               <div className="page-body">
                 <div className="head">
                   <h3>Success !!</h3>
